@@ -1,0 +1,9 @@
+prompts.md
+SPEC.md
+todo.md
+.Common OS, environment, and build artifacts
+.DS_Store
+venv/
+.pytest_cache/
+__pycache__/
+*.pyc
