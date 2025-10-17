@@ -1,0 +1,16 @@
+name: tinyrecursivemodels-mlx
+channels:
+  - conda-forge
+dependencies:
+  - python >=3.9,<3.12
+  - mlx
+  - numpy
+  - pytest
+  - black
+  - isort
+  - flake8
+  - mypy
+  - pip
+  - pip:
+      # Place any pip-only packages here; most dependencies above are conda-forge
+      # For future expansion, e.g.: wandb, matplotlib, ipython

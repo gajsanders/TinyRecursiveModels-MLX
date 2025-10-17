@@ -1,4 +1,11 @@
-torch
+mlx          # MLX framework for Apple Silicon
+numpy        # Numerical computations, >=1.21.0 for MLX compatibility
+pytest       # Testing framework, >=7.0 for modern features
+black        # Code formatter, >=22.0 for consistent style
+isort        # Import sorter, >=5.0 for import organization
+flake8       # Linter, >=4.0 for code quality
+mypy         # Static type checker, >=0.900 for type safety
+torch        # Keep for potential legacy compatibility
 adam-atan2
 einops
 tqdm
@@ -15,6 +22,5 @@ wheel
 setuptools 
 setuptools-scm
 pydantic-core
-huggingface_hub 
 numba
 triton
