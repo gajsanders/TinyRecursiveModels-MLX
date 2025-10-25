@@ -1,3 +1,22 @@
+"""Compatibility wrapper for `trm_ml.utils.logging_utils`.
+
+Re-exports the public functions so tests that import
+`from mlx.utils.logging_utils import ...` keep working.
+"""
+from importlib import import_module
+
+_mod = import_module("trm_ml.utils.logging_utils")
+
+from trm_ml.utils.logging_utils import *  # noqa: F401,F403
+
+__all__ = getattr(_mod, "__all__", [
+    "log_msg",
+    "debug",
+    "info",
+    "warning",
+    "error",
+    "critical",
+])
 """Simple logging utilities used by tests.
 
 The tests capture stderr; to make outputs predictable we write a simple
