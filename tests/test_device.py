@@ -6,7 +6,7 @@ from unittest.mock import patch, MagicMock
 def test_get_device_returns_mlx_when_available():
     """Test that get_device returns 'mlx' when MLX is available."""
     # Temporarily add the mlx module to sys.modules if it's available
-    import mlx.core  # This will work in our environment since we installed MLX
+    import trm_ml.core  # This will work in our environment since we installed MLX
     
     # Import the function to test
     from trm_ml.device import get_device
@@ -45,7 +45,7 @@ def test_get_device_import_error_handling():
     # Create a local function that mocks the behavior when mlx is not available
     def local_get_device():
         try:
-            import mlx.core
+            import trm_ml.core
             return "mlx"
         except ImportError:
             return "cpu"
@@ -95,7 +95,7 @@ def test_get_device_fallback_behavior():
         # Create a local function that simulates the ImportError path
         def simulate_get_device():
             try:
-                import mlx.core
+                import trm_ml.core
                 return "mlx"
             except ImportError:
                 return "cpu"

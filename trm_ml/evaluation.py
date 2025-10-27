@@ -1,4 +1,4 @@
-import mlx.core as mx
+import trm_ml.core as mx
 
 
 def run_evaluation(model, data):

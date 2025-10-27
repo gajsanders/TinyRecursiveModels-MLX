@@ -7,7 +7,7 @@ def get_device():
     """
     try:
         # Try to import MLX to check if it's available
-        import mlx.core
+        import trm_ml.core
         # If import succeeds, return "mlx"
         return "mlx"
     except ImportError:

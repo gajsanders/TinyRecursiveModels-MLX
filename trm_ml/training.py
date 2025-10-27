@@ -1,4 +1,4 @@
-import mlx.core as mx
+import trm_ml.core as mx
 
 
 def train_one_epoch(model, data, optimizer):

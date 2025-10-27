@@ -16,11 +16,11 @@ import os
 sys.path.insert(0, '/Users/enceladus/Library/Python/3.9/lib/python/site-packages')
 
 # Import the installed MLX library first
-import mlx.core as mx
+import trm_ml.core as mx
 
 # Now use importlib to import the TRM module directly from file
 import importlib.util
-model_trm_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'mlx', 'model_trm.py')
+model_trm_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'trm_ml', 'model_trm.py')
 spec = importlib.util.spec_from_file_location("model_trm", model_trm_path)
 model_trm = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(model_trm)
