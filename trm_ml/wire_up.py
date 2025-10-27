@@ -15,8 +15,8 @@ def load_modules():
     # Insert the installed packages path first
     sys.path.insert(0, '/Users/enceladus/Library/Python/3.9/lib/python/site-packages')
     
-    # Import the project's core implementation
-    import trm_ml.core as mx
+    # Import the MLX library
+    import mlx.core as mx
     
     # Now use importlib to import the local modules directly from file
     import importlib.util

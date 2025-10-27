@@ -6,8 +6,8 @@ def get_device():
         str: "mlx" if MLX is available, otherwise "cpu"
     """
     try:
-    # Try to import project core to check if it's available
-    import trm_ml.core
+        # Try to import MLX to check if it's available
+        import mlx.core
         # If import succeeds, return "mlx"
         return "mlx"
     except ImportError:
