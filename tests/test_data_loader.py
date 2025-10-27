@@ -1,7 +1,7 @@
 import sys
 import numpy as np
 from unittest.mock import patch
-from mlx.data_utils import DataLoader, create_dataloader
+from trm_ml.data_utils import DataLoader, create_dataloader
 
 
 def test_dataloader_batch_shapes():

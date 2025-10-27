@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2025 George Sanders
+Copyright (c) 2025 TinyRecursiveModels-MLX Contributors
 
 TinyRecursiveModels-MLX is a port and modification of the original TinyRecursiveModels codebase by:
   - Alexia Jolicoeur-Martineau, SamsungSAILMontreal/TinyRecursiveModels (2025)
@@ -29,7 +29,9 @@ THE SOFTWARE.
 
 ----- Attribution -----
 
-This code is adapted for MLX/Apple Silicon by George Sanders (2025), based on work by original authors cited above.
+This code is adapted for MLX/Apple Silicon by George Sanders and contributors (2025), based on work by original authors cited above.
 Any use of migrated, borrowed, or third-party components from MLX, SamsungSAILMontreal/TinyRecursiveModels, or Apple MLX examples are clearly marked in source files and migration documentation.
 Please consult docs/migration_guide.md for detailed architectural changes and third-party licensing information.
+
+The authors of the original works retain their respective copyrights. This project is a derivative work combining elements from the original works under their respective licenses.
 

@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Mac MLX port of Tiny Recursive Models for recursive reasoning and multi-step reasoning tasks"
 authors = [
     {name = "George Sanders", email = "gajsanders@gmail.com"},
-    {name = "Original Authors: Alexia Jolicoeur-Martineau et al.", email = ""},
+    {name = "Original Authors: Alexia Jolicoeur-Martineau et al."},
 ]
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -16,7 +16,8 @@ dependencies = [
     "black>=23.1",
     "isort>=5.12",
     "flake8>=6.0",
-    "mypy>=1.2"
+    "mypy>=1.2",
+    "psutil>=5.9.0"
 ]
 
 [project.urls]

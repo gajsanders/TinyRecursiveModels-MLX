@@ -9,7 +9,7 @@ We actively welcome improvements, bugfixes, feature additions, and documentation
 
 ## Project Philosophy
 
-- **Test-driven development:** Every new feature or bugfix must be accompanied by one or more tests, written before code changes.
+- **Test-driven development:** Every new feature must start with a passing or failing test stub that defines expected behavior, then be developed to make the test pass.
 - **Atomic, incremental changes:** Prefer small, understandable PRs that only do one thing and are fully covered by tests.
 - **Clarity and transparency:** All architectural changes and major decisions are documented in comments and `docs/migration_guide.md`.
 - **Community and compatibility:** All contributors are credited—please preserve original authorship in adapted files and cite third-party code as described in the LICENSE.
@@ -33,8 +33,11 @@ We actively welcome improvements, bugfixes, feature additions, and documentation
 
 ### 3. Develop with Tests First
 
-- Write a failing or incomplete test that demonstrates the desired change in `tests/`.
-- Develop your feature/code to make the test pass.
+- **ALL NEW FEATURES:** Start by creating a test stub that demonstrates the expected behavior in `tests/`.
+  - Create a failing test that defines the desired functionality before implementing the feature
+  - For bug fixes, create a test that reproduces the bug first
+  - For new features, write a test that describes the expected input/output behavior
+- Implement the feature code to make the test pass.
 - Add or update documentation for all public methods and any complex logic.
 - **Don't leave dead or orphaned code:** If you add a new module or utility, ensure it gets wired into an integration test.
 
@@ -69,10 +72,11 @@ We actively welcome improvements, bugfixes, feature additions, and documentation
 
 ### 7. Review and Merge
 
-- PRs require at least one code review and all tests passing in CI.
+- ALL PRS REQUIRE CODE REVIEW: PRs must be reviewed and approved by at least one other contributor before merging.
+- All tests must pass in CI before merging.
 - Major refactors/doc changes should also update `docs/migration_guide.md` with rationale and affected files.
-- Prefers “squash and merge” for atomic history.
-
+- All code changes must be merged via pull request with review approval - no direct commits to main branch.
+- Prefers "squash and merge" for atomic history.
 ***
 
 ## Contribution Best Practices

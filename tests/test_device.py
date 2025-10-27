@@ -9,7 +9,7 @@ def test_get_device_returns_mlx_when_available():
     import mlx.core  # This will work in our environment since we installed MLX
     
     # Import the function to test
-    from mlx.device import get_device
+    from trm_ml.device import get_device
     
     # Call the function
     result = get_device()
@@ -54,7 +54,7 @@ def test_get_device_import_error_handling():
     # We can't easily remove an already-loaded module, so we'll just verify the structure
     # of the function by checking its source (though this is more of a code verification)
     import inspect
-    from mlx.device import get_device
+    from trm_ml.device import get_device
     
     # Get the source code to verify it has the proper try/except structure
     source = inspect.getsource(get_device)
@@ -70,7 +70,7 @@ def test_get_device_mac_with_mlx():
     
     # Since we're running on Mac (as indicated in initial context: darwin)
     # and we installed MLX, get_device should return "mlx" 
-    from mlx.device import get_device
+    from trm_ml.device import get_device
     
     result = get_device()
     
@@ -102,7 +102,7 @@ def test_get_device_fallback_behavior():
         
         # We can't actually trigger the ImportError with our current setup
         # since mlx is already loaded, so we'll just verify the function works normally
-        from mlx.device import get_device
+        from trm_ml.device import get_device
         result = get_device()
         
         # As long as the function returns either "mlx" or "cpu", it's working correctly

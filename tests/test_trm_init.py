@@ -1,5 +1,5 @@
 import pytest
-from mlx.model_trm import TRM
+from trm_ml.model_trm import TRM
 
 
 def test_trm_init_valid_dimensions():

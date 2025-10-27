@@ -2,7 +2,7 @@ import sys
 import io
 import logging
 from contextlib import redirect_stderr
-from mlx.utils.logging_utils import log_msg, debug, info, warning, error, critical
+from trm_ml.utils.logging_utils import log_msg, debug, info, warning, error, critical
 
 
 def test_log_msg_default_level():

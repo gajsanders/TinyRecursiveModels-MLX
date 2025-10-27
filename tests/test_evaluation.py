@@ -76,7 +76,7 @@ sys.modules['mlx'] = MockMLX()
 sys.modules['mlx.core'] = MockMLX()
 
 # Now we can import our evaluation module
-from mlx.evaluation import run_evaluation
+from trm_ml.evaluation import run_evaluation
 
 
 def test_run_evaluation_returns_scalar():

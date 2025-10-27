@@ -1,6 +1,6 @@
 import numpy as np
 import mlx.core as mx
-from mlx.model_trm import TRM
+from trm_ml.model_trm import TRM
 
 
 def test_recursive_reasoning_steps():

@@ -65,7 +65,7 @@ sys.modules['mlx'] = MockMLX()
 sys.modules['mlx.core'] = MockMLX()
 
 # Now we can import our training module
-from mlx.training import train_one_epoch
+from trm_ml.training import train_one_epoch
 
 
 def test_train_one_epoch_iterates_batches():

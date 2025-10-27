@@ -1,3 +1,63 @@
+Metadata-Version: 2.4
+Name: TinyRecursiveModels-MLX
+Version: 0.1.0
+Summary: Mac MLX port of Tiny Recursive Models for recursive reasoning and multi-step reasoning tasks
+Author: Original Authors: Alexia Jolicoeur-Martineau et al.
+Author-email: George Sanders <gajsanders@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2025 TinyRecursiveModels-MLX Contributors
+        
+        TinyRecursiveModels-MLX is a port and modification of the original TinyRecursiveModels codebase by:
+          - Alexia Jolicoeur-Martineau, SamsungSAILMontreal/TinyRecursiveModels (2025)
+          - Based in part on Hierarchical Reasoning Model and Analysis code by Guan Wang, Jin Li, Yuhao Sun, Xing Chen, Changling Liu, Yue Wu, Meng Lu, Sen Song, Yasin Abbasi Yadkori (2025)
+          - MLX library and examples provided by Apple, ml-explore/mlx-examples (2024-2025)
+        
+        Additional contributors and attribution information can be found in CONTRIBUTORS.md and docs/migration_guide.md.
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in
+        all copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+        THE SOFTWARE.
+        
+        ----- Attribution -----
+        
+        This code is adapted for MLX/Apple Silicon by George Sanders and contributors (2025), based on work by original authors cited above.
+        Any use of migrated, borrowed, or third-party components from MLX, SamsungSAILMontreal/TinyRecursiveModels, or Apple MLX examples are clearly marked in source files and migration documentation.
+        Please consult docs/migration_guide.md for detailed architectural changes and third-party licensing information.
+        
+        The authors of the original works retain their respective copyrights. This project is a derivative work combining elements from the original works under their respective licenses.
+        
+        
+Project-URL: homepage, https://github.com/gajsanders/TinyRecursiveModels-MLX
+Project-URL: repository, https://github.com/gajsanders/TinyRecursiveModels-MLX
+Project-URL: documentation, https://github.com/gajsanders/TinyRecursiveModels-MLX/tree/main/docs
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: mlx>=0.0.1
+Requires-Dist: numpy>=1.22
+Requires-Dist: pytest>=7.2
+Requires-Dist: black>=23.1
+Requires-Dist: isort>=5.12
+Requires-Dist: flake8>=6.0
+Requires-Dist: mypy>=1.2
+Requires-Dist: psutil>=5.9.0
+Dynamic: license-file
+
 Here is a **new README.md** tailored for your TinyRecursiveModels-MLX MLX/Apple Silicon port, reflecting the current project goals, setup instructions, and contribution guidelines:
 
 ***
