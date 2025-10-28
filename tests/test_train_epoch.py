@@ -61,8 +61,28 @@ class MockMLX:
         return np.allclose(arr1.value, arr2.value, rtol=rtol, atol=atol)
 
 # Create a mock mlx.core module
+original_mlx = sys.modules.get('mlx', None)
+original_mlx_core = sys.modules.get('mlx.core', None)
+
 sys.modules['mlx'] = MockMLX()
 sys.modules['mlx.core'] = MockMLX()
+
+# Clean up after ourselves
+def cleanup_mock_modules():
+    # Remove the mock modules from sys.modules
+    if 'mlx' in sys.modules:
+        if original_mlx is not None:
+            sys.modules['mlx'] = original_mlx
+        else:
+            del sys.modules['mlx']
+    if 'mlx.core' in sys.modules:
+        if original_mlx_core is not None:
+            sys.modules['mlx.core'] = original_mlx_core
+        else:
+            del sys.modules['mlx.core']
+
+import atexit
+atexit.register(cleanup_mock_modules)
 
 # Now we can import our training module
 from trm_ml.training import train_one_epoch

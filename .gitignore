@@ -7,3 +7,5 @@ venv/
 .pytest_cache/
 __pycache__/
 *.pyc
+Final_Prompt.md
+.venv_test/

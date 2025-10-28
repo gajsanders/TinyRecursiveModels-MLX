@@ -22,22 +22,40 @@ def test_get_device_returns_mlx_when_available():
 
 def test_get_device_returns_cpu_when_mlx_not_available():
     """Test that get_device returns 'cpu' when MLX is not available."""
-    # Temporarily replace mlx in sys.modules to simulate it not being available
+    # Temporarily replace mlx.core in sys.modules with None to simulate it not being available
     import sys
     from unittest.mock import patch
     
-    with patch.dict('sys.modules', {'mlx.core': None, 'mlx': None}):
-        # Import after patching to see the effect of missing mlx
+    # Clean up any polluted sys.modules entries from other tests
+    # Remove the polluted entries to ensure we can import the real mlx package
+    polluted_mlx = sys.modules.get('mlx')
+    polluted_mlx_core = sys.modules.get('mlx.core')
+    
+    # Clean up polluted entries
+    if polluted_mlx is not None:
+        del sys.modules['mlx']
+    if polluted_mlx_core is not None:
+        del sys.modules['mlx.core']
+    
+    # Clear any cached imports of trm_ml.device to force reimport
+    if 'trm_ml.device' in sys.modules:
+        del sys.modules['trm_ml.device']
+    
+    # Only patch mlx.core to None, not the entire mlx package
+    with patch.dict('sys.modules', {'mlx.core': None}):
+        # Import the device module - this should work because mlx package is still available
         import importlib
-        if 'mlx.device' in sys.modules:
-            del sys.modules['mlx.device']
+        device_module = importlib.import_module('trm_ml.device')
         
-        # Import the device module after patching
-        device_module = importlib.import_module('mlx.device')
-        
-        # Now test the function with the patched imports
+        # Now test the function - it should return "cpu" when mlx.core is not available
         result = device_module.get_device()
         assert result == "cpu", f"Expected 'cpu' when MLX not available, got {result}"
+        
+        # Restore polluted entries if they existed (to minimize impact on other tests)
+        if polluted_mlx is not None:
+            sys.modules['mlx'] = polluted_mlx
+        if polluted_mlx_core is not None:
+            sys.modules['mlx.core'] = polluted_mlx_core
 
 
 def test_get_device_import_error_handling():

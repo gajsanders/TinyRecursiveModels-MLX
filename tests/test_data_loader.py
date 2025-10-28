@@ -98,7 +98,20 @@ def test_dataloader_shuffling():
     shuffled_first_elements = [(s[0], s[1]) for s in all_samples]
     
     # They should be the same elements but likely in different order due to shuffling
-    assert set(original_first_elements) == set(shuffled_first_elements), "Should contain same elements"
+    # Convert to comparable format (both to tuples of scalars)
+    def to_comparable_format(elements):
+        comparable = []
+        for elem in elements:
+            if hasattr(elem, 'item'):
+                comparable.append(tuple(e.item() if hasattr(e, 'item') else float(e) for e in elem))
+            else:
+                comparable.append(tuple(float(e) for e in elem))
+        return set(comparable)
+    
+    original_comparable = to_comparable_format(original_first_elements)
+    shuffled_comparable = to_comparable_format(shuffled_first_elements)
+    
+    assert original_comparable == shuffled_comparable, "Should contain same elements"
 
 
 def test_create_dataloader_function():
