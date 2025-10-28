@@ -1,5 +1,5 @@
 import numpy as np
-import mlx.core as mx
+import trm_ml.core as mx
 from trm_ml.model_trm import TRM
 
 

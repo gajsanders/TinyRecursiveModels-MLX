@@ -1,4 +1,4 @@
-import mlx.core as mx
+import trm_ml.core as mx
 import random
 import numpy as np
 
@@ -6,7 +6,7 @@ import numpy as np
 def get_device():
     """Helper function to get the available device."""
     try:
-        import mlx.core
+        import trm_ml.core
         return "mlx"
     except ImportError:
         return "cpu"
