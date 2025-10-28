@@ -8,4 +8,5 @@ venv/
 __pycache__/
 *.pyc
 Final_Prompt.md
+Final_Promptv2.md
 .venv_test/
