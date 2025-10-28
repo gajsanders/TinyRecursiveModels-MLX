@@ -1,11 +1,13 @@
-mlx          # MLX framework for Apple Silicon
-numpy        # Numerical computations, >=1.21.0 for MLX compatibility
-pytest       # Testing framework, >=7.0 for modern features
-black        # Code formatter, >=22.0 for consistent style
-isort        # Import sorter, >=5.0 for import organization
-flake8       # Linter, >=4.0 for code quality
-mypy         # Static type checker, >=0.900 for type safety
-torch        # Keep for potential legacy compatibility
+mlx                # MLX framework for Apple Silicon (keep unpinned — local shim used during tests)
+numpy>=1.25,<2.0   # Numerical computations: pinned to 1.25.x for Apple Silicon compatibility
+pytest>=7.0,<8.0   # Test runner
+black>=24.3,<25.0  # Code formatter
+isort>=5.12,<6.0   # Import sorter
+flake8>=6.0,<7.0   # Linter
+mypy>=1.9,<2.0     # Static type checker
+
+# Optional / runtime packages (left mostly unpinned to avoid heavy CI downloads conflicts)
+torch               # Keep for potential legacy compatibility (pin manually if required)
 adam-atan2
 einops
 tqdm
@@ -16,10 +18,10 @@ wandb
 omegaconf
 hydra-core
 huggingface_hub
-packaging 
-ninja 
-wheel 
-setuptools 
+packaging
+ninja
+wheel
+setuptools
 setuptools-scm
 pydantic-core
 numba
