@@ -25,4 +25,8 @@ setuptools
 setuptools-scm
 pydantic-core
 numba
-triton
+# triton - optional: not available as a universal wheel on many platforms / Python versions.
+# If you need Triton, install it separately following Triton's platform-specific instructions
+# (or use a CUDA/Linux environment that provides compatible wheels). Keeping it here
+# causes `pip install -r requirements.txt` to fail on many macOS/ARM and older Python versions.
+# triton
