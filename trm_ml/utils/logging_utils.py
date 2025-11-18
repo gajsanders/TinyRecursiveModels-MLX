@@ -4,6 +4,7 @@ The tests capture stderr; to make outputs predictable we write a simple
 formatted message directly to stderr rather than depending on the global
 logging configuration (which pytest may override).
 """
+
 from __future__ import annotations
 
 import sys

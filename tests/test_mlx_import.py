@@ -2,13 +2,13 @@ import pytest
 
 
 def test_mlx_import():
-    """Test that mlx imports correctly and exposes mlx.__version__."""
+    """Test that trm_ml imports correctly and exposes trm_ml.__version__."""
     try:
-        import mlx
+        import trm_ml
     except ImportError:
-        pytest.skip("mlx not available on this platform")
+        pytest.skip("trm_ml not available on this platform")
     
-    # Assert that mlx.__version__ is available
-    assert hasattr(mlx, '__version__'), "mlx should have __version__ attribute"
-    assert mlx.__version__ is not None, "mlx.__version__ should not be None"
-    assert isinstance(mlx.__version__, str), "mlx.__version__ should be a string"
+    # Assert that trm_ml.__version__ is available
+    assert hasattr(trm_ml, '__version__'), "trm_ml should have __version__ attribute"
+    assert trm_ml.__version__ is not None, "trm_ml.__version__ should not be None"
+    assert isinstance(trm_ml.__version__, str), "trm_ml.__version__ should be a string"

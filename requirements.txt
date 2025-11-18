@@ -1,6 +1,6 @@
-mlx                # MLX framework for Apple Silicon (keep unpinned — local shim used during tests)
+mlx>=0.1.0,<1.0.0  # MLX framework (pin a conservative range; CI may override to local shim)
 numpy>=1.25,<2.0   # Numerical computations: pinned to 1.25.x for Apple Silicon compatibility
-pytest>=7.0,<8.0   # Test runner
+pytest>=7.4,<8.0   # Test runner
 black>=24.3,<25.0  # Code formatter
 isort>=5.12,<6.0   # Import sorter
 flake8>=6.0,<7.0   # Linter

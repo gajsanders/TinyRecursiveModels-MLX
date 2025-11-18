@@ -1,10 +1,14 @@
+---
 name: CI
 
 on:
   push:
-    branches: [ main, '**' ]
+    branches:
+      - main
+      - "**"
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   test:
@@ -12,8 +16,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
-        python-version: [3.11]
+        os:
+          - ubuntu-latest
+          - macos-latest
+        python-version:
+          - '3.11'
 
     steps:
       - name: Checkout
@@ -28,7 +35,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          key: >-
+            ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
@@ -36,102 +44,38 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools wheel
           pip install -e . --no-deps
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
 
       - name: Run tests
         env:
           PYTHONPATH: .
         run: |
           pytest -q
-name: Continuous Integration
 
-on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
-
-jobs:
-  test:
-    runs-on: macos-latest
-    
+  install-check:
+    name: Quick install check
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-        architecture: 'x64' # Using x64 as MLX may have better support initially
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
 
-    - name: Install system dependencies
-      run: |
-        brew install rust
+      - name: Quick install (editable) + dev deps
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          # Try editable install first, then install dev deps if present
+          pip install -e . --no-deps || true
+          if [ -f requirements-dev.txt ]; then
+            pip install -r requirements-dev.txt
+          elif [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
 
-    - name: Install Python dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install mlx numpy pytest black isort flake8 mypy
-
-    - name: Install project
-      run: |
-        pip install -e .
-
-    - name: Check code formatting with Black
-      run: |
-        black --check --diff mlx/ benchmarks/ examples/
-
-    - name: Check imports with Isort
-      run: |
-        isort --check-only mlx/ benchmarks/ examples/
-
-    - name: Lint with Flake8
-      run: |
-        flake8 mlx/ benchmarks/ examples/
-
-    - name: Type check with MyPy
-      run: |
-        mypy mlx/ --package mlx
-
-    - name: Run unit tests
-      run: |
-        pytest tests/ -v
-
-    - name: Run benchmarks
-      run: |
-        python benchmarks/benchmark_trm.py
-
-    - name: Run integration test via CLI
-      run: |
-        python mlx/cli.py --benchmark --model-input-dim 64 --model-latent-dim 128 --model-output-dim 32
-
-    - name: Run wire-up pipeline test
-      run: |
-        python mlx/wire_up.py --input-dim 32 --latent-dim 64 --output-dim 16 --epochs 1 --batch-size 8
-
-    - name: Upload benchmark results as artifacts
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: benchmark-results
-        path: |
-          benchmark_results_*.txt
-          logs/
-        retention-days: 30
-
-    - name: Create benchmark summary
-      run: |
-        echo "# Benchmark Summary" > benchmark_summary.txt
-        echo "Run on: $(date)" >> benchmark_summary.txt
-        echo "Python version: $(python --version)" >> benchmark_summary.txt
-        echo "MLX version: $(python -c 'import mlx; print(mlx.__version__)' 2>/dev/null || echo 'unknown')" >> benchmark_summary.txt
-        python benchmarks/benchmark_trm.py | tee -a benchmark_summary.txt
-
-    - name: Upload benchmark summary as artifact
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: benchmark-summary
-        path: benchmark_summary.txt
-        retention-days: 30
+      - name: Smoke import check
+        run: python -c 'import trm_ml; print("trm_ml import OK")'

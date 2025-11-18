@@ -16,7 +16,7 @@ def test_cli_help():
     """Test that the CLI shows help when called with --help."""
     result = subprocess.run([
         sys.executable, 
-        os.path.join(os.path.dirname(os.path.dirname(__file__)), "mlx", "cli.py"),
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), "trm_ml", "cli.py"),
         "--help"
     ], capture_output=True, text=True)
     
@@ -32,7 +32,7 @@ def test_cli_benchmark_option():
     """Test that CLI with --benchmark option runs the benchmark."""
     result = subprocess.run([
         sys.executable,
-        os.path.join(os.path.dirname(os.path.dirname(__file__)), "mlx", "cli.py"),
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), "trm_ml", "cli.py"),
         "--benchmark"
     ], capture_output=True, text=True)
     
@@ -56,7 +56,7 @@ def test_cli_train_option():
     """Test that CLI with --train option attempts to run training."""
     result = subprocess.run([
         sys.executable,
-        os.path.join(os.path.dirname(os.path.dirname(__file__)), "mlx", "cli.py"),
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), "trm_ml", "cli.py"),
         "--train"
     ], capture_output=True, text=True)
     
@@ -79,7 +79,7 @@ def test_cli_eval_option():
     """Test that CLI with --eval option attempts to run evaluation."""
     result = subprocess.run([
         sys.executable,
-        os.path.join(os.path.dirname(os.path.dirname(__file__)), "mlx", "cli.py"),
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), "trm_ml", "cli.py"),
         "--eval"
     ], capture_output=True, text=True)
     
@@ -101,7 +101,7 @@ def test_cli_mutually_exclusive_options():
     # Try to run train and benchmark together (should fail)
     result = subprocess.run([
         sys.executable,
-        os.path.join(os.path.dirname(os.path.dirname(__file__)), "mlx", "cli.py"),
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), "trm_ml", "cli.py"),
         "--train", "--benchmark"
     ], capture_output=True, text=True)
     
@@ -114,7 +114,7 @@ def test_cli_custom_parameters():
     """Test that CLI accepts custom parameters."""
     result = subprocess.run([
         sys.executable,
-        os.path.join(os.path.dirname(os.path.dirname(__file__)), "mlx", "cli.py"),
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), "trm_ml", "cli.py"),
         "--benchmark",
         "--model-input-dim", "64",
         "--model-latent-dim", "128", 

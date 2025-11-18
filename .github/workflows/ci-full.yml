@@ -1,0 +1,114 @@
+---
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          architecture: 'x64'  # Use x64 for MLX support
+
+      - name: Install system dependencies
+        run: |
+          brew install rust
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install mlx numpy pytest black isort flake8 mypy
+
+      - name: Install project
+        run: |
+          pip install -e .
+
+      - name: Check code formatting with Black
+        run: |
+          black --check --diff mlx/ benchmarks/ examples/
+
+      - name: Check imports with Isort
+        run: |
+          isort --check-only mlx/ benchmarks/ examples/
+
+      - name: Lint with Flake8
+        run: |
+          flake8 mlx/ benchmarks/ examples/
+
+      - name: Type check with MyPy
+        run: |
+          mypy mlx/ --package mlx
+
+      - name: Run unit tests
+        run: |
+          pytest tests/ -v
+
+      - name: Run benchmarks
+        run: |
+          python benchmarks/benchmark_trm.py
+
+      - name: Run integration test via CLI
+        run: |
+          python mlx/cli.py --benchmark \
+            --model-input-dim 64 \
+            --model-latent-dim 128 \
+            --model-output-dim 32
+
+      - name: Run wire-up pipeline test
+        run: |
+          python mlx/wire_up.py \
+            --input-dim 32 \
+            --latent-dim 64 \
+            --output-dim 16 \
+            --epochs 1 \
+            --batch-size 8
+
+      - name: Upload benchmark results as artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: benchmark-results
+          path: |
+            benchmark_results_*.txt
+            logs/
+          retention-days: 30
+
+      - name: Get MLX Version
+        run: |
+          python -c "
+          import mlx;
+          print(getattr(mlx,'__version__','unknown'))
+          " > mlx_version.txt 2>/dev/null || echo "unknown" > mlx_version.txt
+      - name: Create benchmark summary
+        run: |
+          # Read the MLX version
+          MLX_VERSION=$(cat mlx_version.txt)
+          # Create summary file
+          echo "# Benchmark Summary" > benchmark_summary.txt
+          echo "Run on: $(date)" >> benchmark_summary.txt
+          echo "Python version: $(python --version)" >> benchmark_summary.txt
+          echo "MLX version: $MLX_VERSION" >> benchmark_summary.txt
+          python benchmarks/benchmark_trm.py | tee -a benchmark_summary.txt
+
+      - name: Upload benchmark summary as artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: benchmark-summary
+          path: benchmark_summary.txt
+          retention-days: 30

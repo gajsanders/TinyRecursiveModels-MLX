@@ -7,21 +7,42 @@ tests that check package metadata.
 
 __version__ = "0.1.0"
 
-# Re-export device module
-try:
-    from trm_ml.device import get_device
-except ImportError:
-    # Fallback implementation
-    def get_device():
-        """Get the available device for computation.
-        
-        Returns:
-            str: "mlx" if MLX is available, otherwise "cpu"
-        """
-        try:
-            import mlx.core
-            return "mlx"
-        except ImportError:
-            return "cpu"
+# Explicitly import submodules to make them available
+from . import core
+from . import device
+from . import model_trm
+from . import training
+from . import evaluation
+from . import data_utils
+from . import cli
+from . import wire_up
+from .utils import logging_utils
 
-__all__ = ["__version__", "get_device"]
+
+# Re-export device module function
+def get_device():
+    """Get the available device for computation.
+
+    Returns:
+        str: "mlx" if MLX is available, otherwise "cpu"
+    """
+    try:
+        return device.get_device()
+    except ImportError:
+        # Fallback implementation
+        return "cpu"
+
+
+__all__ = [
+    "__version__",
+    "get_device",
+    "core",
+    "device",
+    "model_trm",
+    "training",
+    "evaluation",
+    "data_utils",
+    "cli",
+    "wire_up",
+    "logging_utils",
+]

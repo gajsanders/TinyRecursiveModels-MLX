@@ -1,8 +1,8 @@
-mlx>=0.0.1
-numpy>=1.22
-pytest>=7.2
-black>=23.1
-isort>=5.12
-flake8>=6.0
-mypy>=1.2
+mlx<1.0.0,>=0.1.0
+numpy<2.0,>=1.25
+pytest<8.0,>=7.4
+black<25.0,>=24.3
+isort<6.0,>=5.12
+flake8<7.0,>=6.0
+mypy<2.0,>=1.9
 psutil>=5.9.0

@@ -10,3 +10,4 @@ __pycache__/
 Final_Prompt.md
 Final_Promptv2.md
 .venv_test/
+.venv_piptest/

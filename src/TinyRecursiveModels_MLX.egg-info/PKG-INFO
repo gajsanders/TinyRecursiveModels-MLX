@@ -48,13 +48,13 @@ Project-URL: documentation, https://github.com/gajsanders/TinyRecursiveModels-ML
 Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 License-File: LICENSE
-Requires-Dist: mlx>=0.0.1
-Requires-Dist: numpy>=1.22
-Requires-Dist: pytest>=7.2
-Requires-Dist: black>=23.1
-Requires-Dist: isort>=5.12
-Requires-Dist: flake8>=6.0
-Requires-Dist: mypy>=1.2
+Requires-Dist: mlx<1.0.0,>=0.1.0
+Requires-Dist: numpy<2.0,>=1.25
+Requires-Dist: pytest<8.0,>=7.4
+Requires-Dist: black<25.0,>=24.3
+Requires-Dist: isort<6.0,>=5.12
+Requires-Dist: flake8<7.0,>=6.0
+Requires-Dist: mypy<2.0,>=1.9
 Requires-Dist: psutil>=5.9.0
 Dynamic: license-file
 

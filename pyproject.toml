@@ -10,14 +10,14 @@ readme = "README.md"
 license = {file = "LICENSE"}
 requires-python = ">=3.9"
 dependencies = [
-    "mlx>=0.0.1",
-    "numpy>=1.22",
-    "pytest>=7.2",
-    "black>=23.1",
-    "isort>=5.12",
-    "flake8>=6.0",
-    "mypy>=1.2",
-    "psutil>=5.9.0"
+    "mlx>=0.1.0,<1.0.0",
+    "numpy>=1.25,<2.0",
+    "pytest>=7.4,<8.0",
+    "black>=24.3,<25.0",
+    "isort>=5.12,<6.0",
+    "flake8>=6.0,<7.0",
+    "mypy>=1.9,<2.0",
+    "psutil>=5.9.0",
 ]
 
 [project.urls]
@@ -61,4 +61,5 @@ exclude = "(/build|/dist|/docs|/examples|/__pycache__|/env|/tests/data)"
 # Notes:
 # This package is designed to run natively on MacOS ARM (Apple Silicon: M1, M2, M3, M4)
 # Minimum required macOS version: 13.5 (Ventura)
+# Recommended Python: >=3.9; ARM-based Python builds recommended on Apple Silicon
 # CUDA, cuDNN, and NVIDIA GPU support removed.
