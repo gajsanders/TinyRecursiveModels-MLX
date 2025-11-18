@@ -1,7 +1,3 @@
-Here is a **new README.md** tailored for your TinyRecursiveModels-MLX MLX/Apple Silicon port, reflecting the current project goals, setup instructions, and contribution guidelines:
-
-***
-
 # TinyRecursiveModels-MLX
 
 **Mac MLX Compatible Version**
